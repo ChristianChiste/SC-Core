@@ -40,18 +40,14 @@ public class SchedulerOrdered extends SchedulerAbstract {
   @Override
   protected Set<Mapping<Task, Resource>> chooseMappingSubset(final Task task,
       final Set<Mapping<Task, Resource>> mappingOptions) {
-    final List<Mapping<Task, Resource>> mappingList = new ArrayList<>(mappingOptions);
+    //final List<Mapping<Task, Resource>> mappingList = new ArrayList<>(mappingOptions);
     List<Mapping<Task, Resource>> mappingList2 = new ArrayList<>();
+    //mappingList2.add(mappingOptions.iterator().next());
     for(Mapping<Task, Resource> mapping : mappingOptions) {
-    	if(mapping.getTarget().getAttribute("rank")==String.valueOf(index))
+    	if(mapping.getTarget().getAttribute("Rank") == String.valueOf(index))
     		mappingList2.add(mapping);
     }
-    //mappingList2.add(mappingList.get(nextIndex(mappingList.size())).getTarget().getAttribute("Id"));
     return new HashSet<>(mappingList2);
   }
   
-  protected int nextIndex(int size) {
-	return 0; //index++ % size;
-	  
-  }
 }
