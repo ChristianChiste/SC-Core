@@ -14,7 +14,7 @@ jacoco {
   toolVersion = "0.8.5"
 }
 
-group 'Apollo-Core-SC-Core'
+group 'ChristianChiste-SC-Core'
 version '1.0-SNAPSHOT'
 
 mainClassName = 'org.opt4j.core.start.Opt4J'
