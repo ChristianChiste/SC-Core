@@ -8,6 +8,7 @@ import at.uibk.dps.ee.guice.modules.EeModule;
 import at.uibk.dps.sc.core.interpreter.ScheduleInterpreterUser;
 import at.uibk.dps.sc.core.interpreter.ScheduleInterpreterUserSingle;
 import at.uibk.dps.sc.core.scheduler.Scheduler;
+import at.uibk.dps.sc.core.scheduler.SchedulerOrdered;
 import at.uibk.dps.sc.core.scheduler.SchedulerRandom;
 import at.uibk.dps.sc.core.scheduler.SchedulerSingleOption;
 
@@ -33,7 +34,11 @@ public class SchedulerModule extends EeModule {
     /**
      * Random scheduling
      */
-    Random
+    Random,
+    /**
+     * Ordered scheduling
+     */
+    Ordered
   }
 
   @Order(1)
@@ -53,6 +58,8 @@ public class SchedulerModule extends EeModule {
       bind(Scheduler.class).to(SchedulerSingleOption.class);
     } else if (schedulingMode.equals(SchedulingMode.Random)) {
       bind(Scheduler.class).to(SchedulerRandom.class);
+    } else if (schedulingMode.equals(SchedulingMode.Ordered)) {
+        bind(Scheduler.class).to(SchedulerOrdered.class);
     }
   }
 
