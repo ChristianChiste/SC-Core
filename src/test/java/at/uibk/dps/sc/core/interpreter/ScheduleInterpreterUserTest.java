@@ -41,7 +41,7 @@ public class ScheduleInterpreterUserTest {
   }
 
   @Test
-  public void getFunctionForMappingTest() {/*
+  public void getFunctionForMappingTest() {
     Task task = PropertyServiceFunctionUser.createUserTask("task", "Addition");
     Resource local = PropertyServiceResource.createResource("res", ResourceType.Local);
     Resource serverless =
@@ -59,10 +59,10 @@ public class ScheduleInterpreterUserTest {
     Mockito.doReturn(functionMockLockal).when(spy).interpretLocal(task, local);
     assertEquals(serverlessFunc, spy.getFunctionForMapping(serverlessMapping));
     assertEquals(functionMockLockal, spy.getFunctionForMapping(localMapping));
-  */}
+  }
 
   @Test
-  public void interpretLocalTest() {/*
+  public void interpretLocalTest() {
     Task task = PropertyServiceFunctionUser.createUserTask("id", LocalCalculations.Addition.name());
     Resource res = new Resource("res");
     LocalFunctionAbstract functionMock = mock(LocalFunctionAbstract.class);
@@ -71,10 +71,10 @@ public class ScheduleInterpreterUserTest {
     FunctionFactoryServerless mockFacSl = mock(FunctionFactoryServerless.class);
     InterpreterMock tested = new InterpreterMock(factoryMock, mockFacSl);
     assertEquals(functionMock, tested.interpretLocal(task, res));
-  */}
+  }
   
   @Test
-  public void interpretServerlessTest() {/*
+  public void interpretServerlessTest() {
     Task task = PropertyServiceFunctionUser.createUserTask("task", "fancyType");
     String resLink = "link";
     Resource res = PropertyServiceResourceServerless.createServerlessResource("res", resLink);
@@ -84,7 +84,7 @@ public class ScheduleInterpreterUserTest {
     when(mockFacSl.createServerlessFunction(res)).thenReturn(slFuncMock);
     InterpreterMock tested = new InterpreterMock(factoryMock, mockFacSl);
     assertEquals(slFuncMock, tested.interpretServerless(task, res));
-  */}
+  }
 
   @Test(expected = IllegalStateException.class)
   public void interpretLocalTestWrongString() {

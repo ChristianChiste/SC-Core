@@ -17,7 +17,7 @@ import java.util.Set;
 public class ScheduleInterpreterAllTest {
 
   @Test
-  public void test() {/*
+  public void test() {
     ScheduleInterpreterUser mockInterpreterUser = mock(ScheduleInterpreterUser.class);
     Task userTask = PropertyServiceFunctionUser.createUserTask("usertask", "addition");
     Resource res = new Resource("res");
@@ -38,5 +38,5 @@ public class ScheduleInterpreterAllTest {
         new ScheduleInterpreterAll(mockInterpreterEE, mockInterpreterUser);
     assertEquals(eeFunction, tested.interpretSchedule(eeTask, eeSchedule));
     assertEquals(userFunction, tested.interpretSchedule(userTask, userSchedule));
-  */}
+  }
 }

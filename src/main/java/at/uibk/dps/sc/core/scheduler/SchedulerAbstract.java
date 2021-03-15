@@ -47,7 +47,7 @@ public abstract class SchedulerAbstract implements Scheduler {
       final Mappings<Task, Resource> mappings) {
     final ConcurrentHashMap<Task, Set<Mapping<Task, Resource>>> result = new ConcurrentHashMap<>();
     mappings.getAll().stream().collect(Collectors.groupingBy(Mapping::getSource))
-        .forEach((task, mappingList) -> result.put(task, new HashSet<>(mappingList)));
+    .forEach((task, mappingList) -> result.put(task, new HashSet<>(mappingList)));
     return result;
   }
 
@@ -112,7 +112,7 @@ public abstract class SchedulerAbstract implements Scheduler {
    * 
    * @param task the given task
    * @param mappingOptions all mapping options for the given task
-   * @return a mapping subset representing a schedule
+   * @return a mapping subset representing a schedule 
    */
   protected abstract Set<Mapping<Task, Resource>> chooseMappingSubset(final Task task,
       final Set<Mapping<Task, Resource>> mappingOptions);
