@@ -44,7 +44,7 @@ public class SchedulerOrdered extends SchedulerAbstract {
   class MappingComparator implements Comparator<Mapping<Task, Resource>> {
 
     public int compare(Mapping<Task, Resource> m1, Mapping<Task, Resource> m2) {
-      return PropertyServiceMapping.getRank(m1.getTarget()) - PropertyServiceMapping.getRank(m2.getTarget());
+      return PropertyServiceMapping.getRank(m1) - PropertyServiceMapping.getRank(m2);
     }
   }
 }

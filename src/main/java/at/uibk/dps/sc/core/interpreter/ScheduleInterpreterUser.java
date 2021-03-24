@@ -4,8 +4,8 @@ import java.util.Set;
 
 import at.uibk.dps.ee.core.enactable.EnactmentFunction;
 import at.uibk.dps.ee.enactables.local.ConstantsLocal.LocalCalculations;
-import at.uibk.dps.ee.enactables.local.calculation.FunctionFactoryLocal;
-import at.uibk.dps.ee.enactables.serverless.FunctionFactoryServerless;
+import at.uibk.dps.ee.enactables.local.calculation.FunctionFactoryLocalInterface;
+import at.uibk.dps.ee.enactables.serverless.FunctionFactoryServerlessInterface;
 import at.uibk.dps.ee.model.properties.PropertyServiceFunctionUser;
 import at.uibk.dps.ee.model.properties.PropertyServiceResource;
 import at.uibk.dps.ee.model.properties.PropertyServiceResource.ResourceType;
@@ -21,8 +21,8 @@ import net.sf.opendse.model.Task;
  */
 public abstract class ScheduleInterpreterUser implements ScheduleInterpreter {
 
-  protected final FunctionFactoryLocal functionFactoryLocal;
-  protected final FunctionFactoryServerless functionFactorySl;
+  protected final FunctionFactoryLocalInterface functionFactoryLocal;
+  protected final FunctionFactoryServerlessInterface functionFactorySl;
 
   /**
    * Default constructor.
@@ -30,7 +30,8 @@ public abstract class ScheduleInterpreterUser implements ScheduleInterpreter {
    * @param functionFactoryLocal the factory for the creation of
    *        {@link EnactmentFunction}s performing local calculation
    */
-  public ScheduleInterpreterUser(final FunctionFactoryLocal functionFactoryLocal, final FunctionFactoryServerless functionFactorySl) {
+  public ScheduleInterpreterUser(final FunctionFactoryLocalInterface functionFactoryLocal,
+      final FunctionFactoryServerlessInterface functionFactorySl) {
     this.functionFactoryLocal = functionFactoryLocal;
     this.functionFactorySl = functionFactorySl;
   }

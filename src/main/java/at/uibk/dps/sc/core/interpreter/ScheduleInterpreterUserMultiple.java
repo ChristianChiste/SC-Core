@@ -7,8 +7,8 @@ import com.google.inject.Inject;
 
 import at.uibk.dps.ee.core.enactable.EnactmentFunction;
 import at.uibk.dps.ee.enactables.local.Composite;
-import at.uibk.dps.ee.enactables.local.calculation.FunctionFactoryLocal;
-import at.uibk.dps.ee.enactables.serverless.FunctionFactoryServerless;
+import at.uibk.dps.ee.enactables.local.calculation.FunctionFactoryLocalInterface;
+import at.uibk.dps.ee.enactables.serverless.FunctionFactoryServerlessInterface;
 import net.sf.opendse.model.Mapping;
 import net.sf.opendse.model.Resource;
 import net.sf.opendse.model.Task;
@@ -30,8 +30,8 @@ public class ScheduleInterpreterUserMultiple extends ScheduleInterpreterUser {
    * @param functionFactorySl the factory creating the serverless functions
    */
   @Inject
-  public ScheduleInterpreterUserMultiple(final FunctionFactoryLocal localFunctionFactory,
-      final FunctionFactoryServerless functionFactorySl) {
+  public ScheduleInterpreterUserMultiple(final FunctionFactoryLocalInterface localFunctionFactory,
+      final FunctionFactoryServerlessInterface functionFactorySl) {
     super(localFunctionFactory, functionFactorySl);
   }
 
