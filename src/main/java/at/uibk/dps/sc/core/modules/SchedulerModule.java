@@ -4,6 +4,8 @@ import org.opt4j.core.config.annotations.Info;
 import org.opt4j.core.config.annotations.Order;
 import org.opt4j.core.config.annotations.Required;
 import org.opt4j.core.start.Constant;
+
+import at.uibk.dps.ee.core.ExecutionData;
 import at.uibk.dps.ee.guice.modules.EeModule;
 import at.uibk.dps.sc.core.interpreter.ScheduleInterpreterUser;
 import at.uibk.dps.sc.core.interpreter.ScheduleInterpreterUserMultiple;
@@ -22,6 +24,21 @@ import at.uibk.dps.sc.core.scheduler.SchedulerSingleOption;
  *
  */
 public class SchedulerModule extends EeModule {
+
+  public enum SchedulingType {
+    /**
+     * Execution on single scheduled resource
+     */
+    Dynamic,
+    /**
+     * Execution on single resource
+     */
+    StaticSingle,
+    /**
+     * Execution on every resource
+     */
+    StaticAll
+  }
 
   /**
    * Enum defining different scheduling modes.
@@ -47,29 +64,14 @@ public class SchedulerModule extends EeModule {
     Ordered
   }
 
-  public enum SchedulingType {
-    /**
-     * Execution on single scheduled resource
-     */
-    Dynamic,
-    /**
-     * Execution on single resource
-     */
-    StaticSingle,
-    /**
-     * Execution on every resource
-     */
-    StaticAll
-  }
-
   @Order(1)
   @Info("The type of scheduling for user tasks.")
-  public SchedulingType schedulingType = SchedulingType.Dynamic;
+  protected static SchedulingType schedulingType = SchedulingType.StaticSingle;
 
   @Order(2)
   @Info("The mode used to schedule user tasks.")
   @Required(property = "schedulingType", elements = "Dynamic")
-  public SchedulingMode schedulingMode = SchedulingMode.Random;
+  public SchedulingMode schedulingMode;
 
   @Order(3)
   @Info("The number of mappings to pick for each user task.")
@@ -88,7 +90,7 @@ public class SchedulerModule extends EeModule {
         bind(Scheduler.class).to(SchedulerOrdered.class);
       }
     } else if (schedulingType.equals(SchedulingType.StaticSingle)) {
-      bind(ScheduleInterpreterUser.class).to(ScheduleInterpreterUserMultiple.class);
+      bind(ScheduleInterpreterUser.class).to(ScheduleInterpreterUserSingle.class);
       bind(Scheduler.class).to(SchedulerSingleOption.class);
     } else if (schedulingType.equals(SchedulingType.StaticAll)) {
       bind(ScheduleInterpreterUser.class).to(ScheduleInterpreterUserMultiple.class);
