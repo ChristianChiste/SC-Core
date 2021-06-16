@@ -33,11 +33,11 @@ public class SchedulerModule extends EeModule {
     /**
      * Execution on single resource
      */
-    StaticSingle,
+    SingleStatic,
     /**
      * Execution on every resource
      */
-    StaticAll
+    RedundantStatic
   }
 
   /**
@@ -66,7 +66,7 @@ public class SchedulerModule extends EeModule {
 
   @Order(1)
   @Info("The type of scheduling for user tasks.")
-  protected static SchedulingType schedulingType = SchedulingType.StaticSingle;
+  protected static SchedulingType schedulingType = SchedulingType.SingleStatic;
 
   @Order(2)
   @Info("The mode used to schedule user tasks.")
@@ -88,10 +88,10 @@ public class SchedulerModule extends EeModule {
       } else if (schedulingMode.equals(SchedulingMode.Ordered)) {
         bind(Scheduler.class).to(SchedulerOrdered.class);
       }
-    } else if (schedulingType.equals(SchedulingType.StaticSingle)) {
+    } else if (schedulingType.equals(SchedulingType.SingleStatic)) {
       bind(ScheduleInterpreterUser.class).to(ScheduleInterpreterUserSingle.class);
       bind(Scheduler.class).to(SchedulerSingleOption.class);
-    } else if (schedulingType.equals(SchedulingType.StaticAll)) {
+    } else if (schedulingType.equals(SchedulingType.RedundantStatic)) {
       bind(ScheduleInterpreterUser.class).to(ScheduleInterpreterUserMultiple.class);
       bind(Scheduler.class).to(SchedulerAllOptions.class);
     }
