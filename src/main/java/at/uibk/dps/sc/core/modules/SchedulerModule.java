@@ -79,7 +79,6 @@ public class SchedulerModule extends EeModule {
   @Required(property = "schedulingMode", elements = "Random")
   public int mappingsToPick = 1;
 
-
   @Override
   protected void config() {
     if (schedulingType.equals(SchedulingType.Dynamic)) {

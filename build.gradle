@@ -14,7 +14,7 @@ jacoco {
   toolVersion = "0.8.5"
 }
 
-group 'ChristianChiste-SC-Core'
+group 'Apollo-Core-SC-Core'
 version '1.0-SNAPSHOT'
 
 mainClassName = 'org.opt4j.core.start.Opt4J'
@@ -39,13 +39,9 @@ dependencies {
   // dependency to opendse
   implementation 'com.github.FedorSmirnov89:opendse:-SNAPSHOT'
 
-
-
   // test dependencies
   testCompile group: 'junit', 		name: 'junit', 					version: '4.+'
   testCompile group: 'org.mockito',     name: 'mockito-core',     version: '3.4.4'
-  // dependency to local files
-  // compile files('libs/lib.jar')
 }
 
 jacocoTestReport {
