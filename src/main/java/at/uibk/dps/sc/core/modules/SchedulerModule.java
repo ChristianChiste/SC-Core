@@ -15,6 +15,8 @@ import at.uibk.dps.sc.core.scheduler.SchedulerAllOptions;
 import at.uibk.dps.sc.core.scheduler.SchedulerOrdered;
 import at.uibk.dps.sc.core.scheduler.SchedulerRandom;
 import at.uibk.dps.sc.core.scheduler.SchedulerSingleOption;
+import at.uibk.dps.sc.core.scheduler.Scheduling;
+import at.uibk.dps.sc.core.scheduler.Scheduling.SchedulingOption;
 
 /**
  * The {@link SchedulerModule} configures the binding of the scheduling-related
@@ -82,18 +84,22 @@ public class SchedulerModule extends EeModule {
   @Override
   protected void config() {
     if (schedulingType.equals(SchedulingType.Dynamic)) {
+      Scheduling.schedulingOption = SchedulingOption.Dynamic;
       bind(ScheduleInterpreterUser.class).to(ScheduleInterpreterUserSingle.class);
       if (schedulingMode.equals(SchedulingMode.Random)) {
         bind(Scheduler.class).to(SchedulerRandom.class);
       } else if (schedulingMode.equals(SchedulingMode.Ordered)) {
         bind(Scheduler.class).to(SchedulerOrdered.class);
       }
-    } else if (schedulingType.equals(SchedulingType.SingleStatic)) {
-      bind(ScheduleInterpreterUser.class).to(ScheduleInterpreterUserSingle.class);
-      bind(Scheduler.class).to(SchedulerSingleOption.class);
-    } else if (schedulingType.equals(SchedulingType.RedundantStatic)) {
-      bind(ScheduleInterpreterUser.class).to(ScheduleInterpreterUserMultiple.class);
-      bind(Scheduler.class).to(SchedulerAllOptions.class);
+    } else {
+      Scheduling.schedulingOption = SchedulingOption.Static;
+      if (schedulingType.equals(SchedulingType.SingleStatic)) {
+        bind(ScheduleInterpreterUser.class).to(ScheduleInterpreterUserSingle.class);
+        bind(Scheduler.class).to(SchedulerSingleOption.class);
+      } else if (schedulingType.equals(SchedulingType.RedundantStatic)) {
+        bind(ScheduleInterpreterUser.class).to(ScheduleInterpreterUserMultiple.class);
+        bind(Scheduler.class).to(SchedulerAllOptions.class);
+      }
     }
   }
 

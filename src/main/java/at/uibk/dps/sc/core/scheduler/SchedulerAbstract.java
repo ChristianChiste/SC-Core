@@ -9,6 +9,7 @@ import at.uibk.dps.ee.model.graph.EnactmentSpecification;
 import at.uibk.dps.ee.model.graph.SpecificationProvider;
 import at.uibk.dps.ee.model.properties.PropertyServiceFunction;
 import at.uibk.dps.ee.model.properties.PropertyServiceFunction.UsageType;
+import at.uibk.dps.sc.core.scheduler.Scheduling.SchedulingOption;
 import net.sf.opendse.model.Mapping;
 import net.sf.opendse.model.Mappings;
 import net.sf.opendse.model.Resource;
@@ -24,7 +25,8 @@ public abstract class SchedulerAbstract implements Scheduler {
 
   protected final EnactmentSpecification specification;
   protected final ConcurrentHashMap<Task, Set<Mapping<Task, Resource>>> concurrentMappings;
-
+  protected final SchedulingOption schedulingOption = Scheduling.schedulingOption; 
+  
   /**
    * Default constructor
    * 
