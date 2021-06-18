@@ -24,8 +24,7 @@ import net.sf.opendse.model.Task;
 public abstract class SchedulerAbstract implements Scheduler {
 
   protected final EnactmentSpecification specification;
-  protected final ConcurrentHashMap<Task, Set<Mapping<Task, Resource>>> concurrentMappings;
-  protected final SchedulingOption schedulingOption = Scheduling.schedulingOption; 
+  protected final ConcurrentHashMap<Task, Set<Mapping<Task, Resource>>> concurrentMappings; 
   
   /**
    * Default constructor
